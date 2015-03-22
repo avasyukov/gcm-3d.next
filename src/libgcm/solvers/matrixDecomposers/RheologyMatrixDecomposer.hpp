@@ -1,15 +1,17 @@
-#ifndef RheologyMatrixDecomposer_HPP
-#define RheologyMatrixDecomposer_HPP 
+#ifndef RHEOLOGY_MATRIX_DECOMPOSER_HPP
+#define RHEOLOGY_MATRIX_DECOMPOSER_HPP 
 
 #include "libgcm/rheologyModels/GcmMatrix.hpp"
 
+#include <cmath>
 #include <memory>
 
 namespace gcm
 {
     /**
-     * Interface to implement for rheology matrix decomposer. Decomposer is supposed to be used
-     * for matrix decomposition, i.e. to fill matricex \f$U\f$, \f$\Lambda\f$ and \f$U^{-1}\f$.
+     * Interface to implement for rheology matrix decomposer. 
+	 * Decomposer is used for matrix decomposition, 
+	 * i.e. to fill matrices \f$U\f$, \f$\Lambda\f$ and \f$U^{-1}\f$.
      */
     class RheologyMatrixDecomposer
     {
@@ -22,7 +24,8 @@ namespace gcm
          * @param l Matrix to store \f$\Lambda\f$
          * @param u1 Matrix to store \f$U^{-1}\f$
          */
-        virtual void decomposeX(const GcmMatrix& a, GcmMatrix& u, GcmMatrix& l, GcmMatrix& u1) const = 0;
+        virtual void decomposeX(const GcmMatrix& a, GcmMatrix& u,
+		                              GcmMatrix& l, GcmMatrix& u1) const = 0;
         /**
          * Computes decomposition for matrix in Y direction.
          *
@@ -31,7 +34,8 @@ namespace gcm
          * @param l Matrix to store \f$\Lambda\f$
          * @param u1 Matrix to store \f$U^{-1}\f$
          */
-        virtual void decomposeY(const GcmMatrix& a, GcmMatrix& u, GcmMatrix& l, GcmMatrix& u1) const = 0;
+        virtual void decomposeY(const GcmMatrix& a, GcmMatrix& u, 
+		                              GcmMatrix& l, GcmMatrix& u1) const = 0;
         /**
          * Computes decomposition for matrix in Z direction.
          *
@@ -40,7 +44,8 @@ namespace gcm
          * @param l Matrix to store \f$\Lambda\f$
          * @param u1 Matrix to store \f$U^{-1}\f$
          */
-        virtual void decomposeZ(const GcmMatrix& a, GcmMatrix& u, GcmMatrix& l, GcmMatrix& u1) const = 0;
+        virtual void decomposeZ(const GcmMatrix& a, GcmMatrix& u, 
+		                              GcmMatrix& l, GcmMatrix& u1) const = 0;
     };
 
     typedef std::shared_ptr<RheologyMatrixDecomposer> DecomposerPtr;
@@ -52,4 +57,4 @@ namespace gcm
     }
 };
 
-#endif /* RheologyMatrixDecomposer_HPP */
+#endif /* RHEOLOGY_MATRIX_DECOMPOSER_HPP */

@@ -1,9 +1,12 @@
-#ifndef IdealElasticNode_H_
-#define IdealElasticNode_H_
+#ifndef IDEAL_ELASTIC_NODE_HPP
+#define IDEAL_ELASTIC_NODE_HPP
 
 #include "libgcm/util/Types.hpp"
 #include "libgcm/util/NodeTypes.hpp"
 #include "libgcm/nodes/CalcNode.hpp"
+#include "libgcm/util/Math.hpp"
+#include "libgcm/util/Assertion.hpp"
+
 
 namespace gcm {
 
@@ -25,6 +28,19 @@ namespace gcm {
          */
         IdealElasticNode();
 
+		/**
+         * Creates node with: 
+         *     type == type
+         *     valuesInPDE == numOfPDE
+         *     valuesInODE == numOfODE
+		 * 
+		 * Used in constructors of nodes derived from IdealElasticNode.
+		 * 
+         * @param numOfPDE number of values in vector from PDE
+         * @param numOfODE number of values calculated by ODE's
+         * @param type NODE_TYPE
+         */
+		IdealElasticNode(uchar numOfPDE, uchar numOfODE, uchar type);
         /**
          * Velocity vector x component.
          */
@@ -142,4 +158,4 @@ namespace gcm {
     };
 }
 
-#endif
+#endif /* IDEAL_ELASTIC_NODE_HPP */

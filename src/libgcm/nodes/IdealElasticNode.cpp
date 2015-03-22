@@ -1,12 +1,14 @@
 #include "libgcm/nodes/IdealElasticNode.hpp"
-#include "libgcm/util/Assertion.hpp"
-#include "libgcm/util/Math.hpp"
 
-#include <cmath>
 
 using namespace gcm;
 
 IdealElasticNode::IdealElasticNode() : CalcNode(9, 0, gcm::IDEAL_ELASTIC_NODE_TYPE)
+{
+}
+
+IdealElasticNode::IdealElasticNode(uchar numOfPDE, uchar numOfODE, uchar type) :
+											CalcNode(numOfPDE, numOfODE, type)
 {
 }
 
@@ -150,12 +152,12 @@ real IdealElasticNode::getPressure() const
 // See http://www.toehelp.ru/theory/sopromat/6.html
 vector3r IdealElasticNode::getPrincipalStresses() const
 {
-    real mainStresses[3];
-    real a = -getStressInvariantJ1();
-    real b = getStressInvariantJ2();
-    real c = -getStressInvariantJ3();
+    double mainStresses[3];
+    double a = -getStressInvariantJ1();
+    double b = getStressInvariantJ2();
+    double c = -getStressInvariantJ3();
     
-    solvePolynomialThirdOrder(a, b, c, mainStresses[0], mainStresses[1], mainStresses[2]);
+//    solvePolynomialThirdOrder(a, b, c, mainStresses[0], mainStresses[1], mainStresses[2]);
 
     return vector3r(mainStresses[0], mainStresses[1], mainStresses[2]);
 }
